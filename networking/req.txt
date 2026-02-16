@@ -1,0 +1,2 @@
+alias serverbuild='gcc -o tinyweb tiny_server.c && sudo setcap cap_net_bind_service=+ep ./tinyweb'
+alias serverbuild='gcc -o tinyweb tiny_server.c && sudo chown root:root ./tinyweb && sudo chmod u+s ./tinyweb'

@@ -5,11 +5,12 @@
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<arpa/inet.h>
+#include<unistd.h>
 #include "errchk.h"
 #include "send_rec.h"
 
 #define PORT 80
-#define webroot "./webrooot"
+#define webroot "./webroot"
 
 void handle_connection(int , struct sockaddr_in *);
 int get_file_size(int);
