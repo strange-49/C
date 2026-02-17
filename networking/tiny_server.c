@@ -7,7 +7,7 @@
 #include<arpa/inet.h>
 #include<unistd.h>
 #include "errchk.h"
-#include "send_rec.h"
+#include "network.h"
 
 #define PORT 80
 #define webroot "./webroot"
