@@ -53,8 +53,8 @@ struct ip_hdr {
     unsigned char ip_ttl;
     unsigned char ip_type;
     unsigned short ip_checksum;
-    unsigned int ip_src_addr;
-    unsigned int ip_dest_addr;
+    struct in_addr ip_src_addr;
+    struct in_addr ip_dest_addr;
 };
 
 struct tcp_hdr {
