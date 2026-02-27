@@ -65,6 +65,13 @@ void handle_connection(int sockfd, struct sockaddr_in *client_addr_ptr) {
     }
     else {
         *ptr=0;
+        // Remove trailing spaces
+        int len = strlen(request);
+        while(len > 0 && request[len-1] == ' ') {
+            request[len-1] = '\0';
+            len--;
+        }
+        
         ptr = NULL;
         if(strncmp(request, "GET ",4)==0)
             ptr = request+4;

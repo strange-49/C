@@ -19,20 +19,36 @@ void *ec_malloc(unsigned int size) {
 }
 
 void dump(const unsigned char *data_buffer, const unsigned int length) {
-    unsigned char byte;
-    unsigned int i,j;
-    for(i = 0; i<length; i++) {
-        byte = data_buffer[i];
+    unsigned int i, j;
+
+    for(i = 0; i < length; i++) {
+
         printf("%02x ", data_buffer[i]);
-        if(((i%16)==15) || (i ==length-1)) {
-            for(j=0; j<15-(i%16); j++) {
-                byte = data_buffer[j];
-                if((byte > 31) && (byte < 127))
-                    printf("%c", byte);
-                else   
+
+        // End of 16-byte line OR end of buffer
+        if((i % 16 == 15) || (i == length - 1)) {
+
+            // Fill spacing if line not complete
+            if(i % 16 != 15) {
+                for(j = 0; j < 15 - (i % 16); j++)
+                    printf("   ");
+            }
+
+            printf("  ");
+
+            // Print ASCII section
+            unsigned int line_start = i - (i % 16);
+            unsigned int line_end = i;
+
+            for(j = line_start; j <= line_end; j++) {
+                if(data_buffer[j] >= 32 && data_buffer[j] <= 126)
+                    printf("%c", data_buffer[j]);
+                else
                     printf(".");
             }
+
             printf("\n");
         }
     }
 }
+

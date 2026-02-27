@@ -23,11 +23,11 @@ int main() {
 
     printf("sniffing on device: %s\n", device);
 
-    pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuf);
+    pcap_handle = pcap_open_live(device, 4096 , 1, 0, errbuf);
     if(pcap_handle == NULL) 
         pcap_fatal("pcap_open_live", errbuf);
 
-    pcap_loop(pcap_handle, 3, caught_packet, NULL);
+    pcap_loop(pcap_handle, 15, caught_packet, NULL);
 
     pcap_close(pcap_handle);
 }
